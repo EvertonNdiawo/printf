@@ -35,7 +35,18 @@ int _printf(const char *format, ...)
 		if (*format != '%' || (*format == '%' && *(format + 1) == '%'))
 			char_counter += _putchar(*format++);
 		else if (*(format + 1) == 'c')
-			char_counter += _putchar(va_arg(argumentList, int)), format += 2;
+		{
+			char_counter += _putchar(va_arg(argumentList, int));
+			format += 2;
+		}
+		else if (*(format + 1) == 's')
+		{
+			str = va_arg(argumentList, char *);
+			if (str)
+				while (*str)
+					char_counter += _putchar(*str++);
+			format += 2;
+		}
 		else
 			char_counter += _putchar(*format++);
 	}
