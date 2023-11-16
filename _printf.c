@@ -24,8 +24,15 @@ void handle_string(va_list args, int *count)
 {
 	char *str = va_arg(args, char *);
 
-	write(1, str, strlen(str));
-	(*count) += strlen(str);
+	if (str == NULL)
+	{
+		return;
+	}
+	else
+	{
+		write(1, str, strlen(str));
+		(*count) += strlen(str);
+	}
 }
 
 /**
